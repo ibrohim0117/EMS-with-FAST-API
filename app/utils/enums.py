@@ -9,3 +9,4 @@ class RoleType(Enum):
 
     user = "user"
     admin = "admin"
+    organizer = "organizer"

@@ -5,8 +5,8 @@ import typer
 from asyncpg.exceptions import InvalidCatalogNameError, InvalidPasswordError
 from rich import print  # pylint: disable=W0622
 from sqlalchemy.ext.asyncio import create_async_engine
-from settings import get_settings
-from database.db import Base
+from app.settings import get_settings
+from app.database.db import Base
 
 app = typer.Typer(no_args_is_help=True, rich_markup_mode="rich")
 
