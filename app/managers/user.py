@@ -6,13 +6,13 @@ from fastapi import HTTPException, status
 from passlib.context import CryptContext
 from sqlalchemy import delete, update
 from sqlalchemy.exc import IntegrityError
-from database.helpers import UserDB
-from managers.auth import AuthManager
-from models import User
+from app.database.helpers import UserDB
+from app.managers.auth import AuthManager
+from app.models import User
 from collections.abc import Sequence
 from sqlalchemy.ext.asyncio import AsyncSession
-from utils.enums import RoleType
-from schemas.user import UserChangePasswordRequest, UserEditRequest
+from app.utils.enums import RoleType
+from app.schemas.user import UserChangePasswordRequest, UserEditRequest
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

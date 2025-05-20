@@ -15,9 +15,9 @@ from sqlalchemy.ext.asyncio import (
 )
 from typer.testing import CliRunner
 
-from settings import get_settings
-from database.db import Base, get_database
-from main import app
+from app.settings import get_settings
+from app.database.db import Base, get_database
+from app.main import app
 
 from collections.abc import AsyncGenerator, Generator
 

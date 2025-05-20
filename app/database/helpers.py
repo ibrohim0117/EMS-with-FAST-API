@@ -1,4 +1,4 @@
-from models import User
+from app.models import User
 from typing import Any
 from sqlalchemy import select
 from collections.abc import Sequence

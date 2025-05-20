@@ -3,10 +3,10 @@
 import pytest
 from fastapi import BackgroundTasks, HTTPException
 
-from managers.user import ErrorMessages, UserManager, pwd_context
-from utils.enums import RoleType
-from models import User
-from schemas.user import UserChangePasswordRequest, UserEditRequest
+from app.managers.user import ErrorMessages, UserManager, pwd_context
+from app.utils.enums import RoleType
+from app.models import User
+from app.schemas.user import UserChangePasswordRequest, UserEditRequest
 
 
 @pytest.mark.unit()

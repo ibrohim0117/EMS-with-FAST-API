@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from settings import get_settings
-from routers import routers
+from .settings import get_settings
+from .routers import routers
 
 app = FastAPI(
     title=get_settings().title,

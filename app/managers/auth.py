@@ -7,12 +7,12 @@ import jwt
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
-from models import User
-from settings import get_settings
-from database.db import get_database
-from database.helpers import UserDB
-from utils.enums import RoleType
-from schemas.auth import TokenRefreshRequest
+from app.models import User
+from app.settings import get_settings
+from app.database.db import get_database
+from app.database.helpers import UserDB
+from app.utils.enums import RoleType
+from app.schemas.auth import TokenRefreshRequest
 
 
 class ResponseMessages:

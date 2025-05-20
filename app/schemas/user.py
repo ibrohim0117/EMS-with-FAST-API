@@ -1,9 +1,9 @@
 """Define Schemas used by the User routes."""
 
 
-from utils.enums import RoleType
+from app.utils.enums import RoleType
 from pydantic import BaseModel, ConfigDict, Field
-from schemas.examples import ExampleUser
+from app.schemas.examples import ExampleUser
 
 
 class UserBase(BaseModel):

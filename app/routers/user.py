@@ -6,12 +6,12 @@ from typing import Optional, Union
 from fastapi import APIRouter, Depends, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.db import get_database
-from managers.auth import can_edit_user, is_admin, oauth2_schema
-from managers.user import UserManager
-from utils.enums import RoleType
-from models import User
-from schemas.user import UserChangePasswordRequest, UserEditRequest, MyUserResponse, UserResponse
+from app.database.db import get_database
+from app.managers.auth import can_edit_user, is_admin, oauth2_schema
+from app.managers.user import UserManager
+from app.utils.enums import RoleType
+from app.models import User
+from app.schemas.user import UserChangePasswordRequest, UserEditRequest, MyUserResponse, UserResponse
 
 router = APIRouter(tags=["Users"], prefix="/users")
 
