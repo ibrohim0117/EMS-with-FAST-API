@@ -29,9 +29,9 @@ class Settings(BaseSettings):
     version: str = "v1"
     repository: str = "https://github.com/abdurasuloff/fastapi-template"
     license_info: dict[str, str] = {"name": "MIT", "url": "https://opensource.org/licenses/MIT"}
-    contact: dict[str, str] = {"name": "Abdurasulov Akbarjon", "url": "https://www.akbarjon.uz"}
-    email: str = "abdurasulovcodes@gmail.com"
-    year: str = "2004"
+    contact: dict[str, str] = {"name": "Ibrohim To'lqinov", "url": "https://github.com/ibrohim0117"}
+    email: str = "ibrohim.dev.uz@gmail.com"
+    year: str = "2001"
 
     # model_config = SettingsConfigDict(env_file=".env")
     class Config:

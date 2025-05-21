@@ -7,8 +7,8 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import date, time as t, datetime
 
-from app.database.db import Base
-from app.utils.enums import (
+from database.db import Base
+from utils.enums import (
     RoleType, EventStatus, TickedStatus,
     PaymentMethod, PaymentStatus
 )

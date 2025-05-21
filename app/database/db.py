@@ -6,7 +6,7 @@ from typing import Any
 from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
-from app.settings import get_settings
+from settings import get_settings
 
 DATABASE_URL = (
     "postgresql+asyncpg://"

@@ -15,9 +15,9 @@ from sqlalchemy.ext.asyncio import (
 )
 from typer.testing import CliRunner
 
-from app.settings import get_settings
-from app.database.db import Base, get_database
-from app.main import app
+from settings import get_settings
+from database.db import Base, get_database
+from main import app
 
 from collections.abc import AsyncGenerator, Generator
 
@@ -78,8 +78,8 @@ async def test_db() -> AsyncGenerator[AsyncSession, Any]:
 
 @pytest_asyncio.fixture()
 async def client() -> AsyncGenerator[AsyncClient, Any]:
-    """Fixture to yield a test client for the app."""
-    app.dependency_overrides[get_database] = get_database_override
+    """Fixture to yield a test client for the """
+    dependency_overrides[get_database] = get_database_override
     async with AsyncClient(
         app=app,
         base_url="http://testserver",
@@ -87,7 +87,7 @@ async def client() -> AsyncGenerator[AsyncClient, Any]:
         timeout=10,
     ) as client:
         yield client
-    app.dependency_overrides = {}
+    dependency_overrides = {}
 
 
 

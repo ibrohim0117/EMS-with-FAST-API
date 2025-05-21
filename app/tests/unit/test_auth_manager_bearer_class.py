@@ -5,10 +5,10 @@ from datetime import datetime, timezone
 import pytest
 from fastapi import BackgroundTasks, HTTPException, status
 
-from app.managers.auth import CustomHTTPBearer, ResponseMessages
-from app.managers.user import UserManager
-from app.models import User
-from app.tests.helpers import get_token
+from managers.auth import CustomHTTPBearer, ResponseMessages
+from managers.user import UserManager
+from models import User
+from tests.helpers import get_token
 
 
 @pytest.mark.unit()

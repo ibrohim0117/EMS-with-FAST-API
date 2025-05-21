@@ -1,7 +1,7 @@
 """Some helper functions for testing."""
 
 import jwt
-from app.settings import get_settings
+from settings import get_settings
 
 
 def get_token(sub: int, exp: float, typ: str) -> str:
