@@ -143,6 +143,12 @@ def is_admin(request: Request) -> None:
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Forbidden")
 
 
+def is_organizer(request: Request) -> None:
+    """Block if user is not an Organizer."""
+    if request.state.user.role not in [RoleType.organizer, RoleType.admin]:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Forbidden")
+
+
 def can_edit_user(request: Request) -> None:
     """Check if the user can edit this resource. True if they own the resource or are Admin"""
 

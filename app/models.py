@@ -34,7 +34,7 @@ class User(Base):
     verified: Mapped[bool] = mapped_column(Boolean, default=False)
 
     events: Mapped[list["Event"]] = relationship()
-    ticked: Mapped[list["Ticket"]] = relationship()
+    tickets: Mapped[list["Ticket"]] = relationship()
     payments: Mapped[list["Payment"]] = relationship()
 
     def __repr__(self) -> str:
@@ -71,7 +71,7 @@ class Event(Base):
     )
 
     organizer_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
-    organizer: Mapped[User] = relationship("User", backref="events")
+    organizer: Mapped[User] = relationship("User", back_populates="events")
 
     tickets: Mapped[list["Ticket"]] = relationship()
 
