@@ -1,8 +1,10 @@
-from models import User
+from models import User, Event
 from typing import Any
 from sqlalchemy import select
 from collections.abc import Sequence
 from sqlalchemy.ext.asyncio import AsyncSession
+
+
 
 
 class UserDB:
@@ -34,3 +36,21 @@ class UserDB:
         new_user = User(**user_data)
         session.add(new_user)
         return new_user
+
+
+class EventDB:
+
+    @staticmethod
+    async def all(session: AsyncSession) -> Sequence[Event]:
+        """Return all Events in the database."""
+        result = await session.execute(select(Event))
+        # print(result.scalars().all())
+        return result.scalars().all()
+
+
+    @staticmethod
+    async def get(session: AsyncSession, event_id: int) -> Event:
+        print(Event.id, '>>>>>>>>', event_id)
+        result = await session.execute(select(Event).where(Event.id == event_id))
+        return result.scalars().first()
+

@@ -13,6 +13,7 @@ from utils.enums import RoleType
 from models import User, Event
 from schemas.user import UserChangePasswordRequest, UserEditRequest, MyUserResponse, UserResponse
 from schemas.event_schemas import EventRequestSchema, EventResponseSchema
+from watchfiles import awatch
 
 router = APIRouter(tags=["Events"], prefix="/events")
 
@@ -22,6 +23,14 @@ async def create_event(request: Request, event_data: EventRequestSchema, db: Asy
 
     event = await EventManager.create_event(event_data, request.state.user.id, db)
     return event
+
+
+@router.get("/list/", response_model=Union[EventResponseSchema, list[EventResponseSchema]], status_code=status.HTTP_200_OK)
+async def get_events(db: AsyncSession = Depends(get_database), event_id: Optional[int] = None) -> Union[Sequence[Event], Event]:
+    """Get the current event's data only."""
+    if event_id is None:
+        return await EventManager.get_all_events(db)
+    return await EventManager.get_event_by_id(db, event_id)
 
 
 
