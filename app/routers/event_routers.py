@@ -30,7 +30,7 @@ async def get_events(db: AsyncSession = Depends(get_database), event_id: Optiona
     """Get the current event's data only."""
     if event_id is None:
         return await EventManager.get_all_events(db)
-    return await EventManager.get_event_by_id(db, event_id)
+    return await EventManager.get_event_by_id(session=db, event_id=event_id)
 
 
 

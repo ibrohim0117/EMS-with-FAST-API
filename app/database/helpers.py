@@ -49,8 +49,9 @@ class EventDB:
 
 
     @staticmethod
-    async def get(session: AsyncSession, event_id: int) -> Event:
+    async def get(session: AsyncSession, event_id: int):
         print(Event.id, '>>>>>>>>', event_id)
         result = await session.execute(select(Event).where(Event.id == event_id))
         return result.scalars().first()
+
 
