@@ -51,7 +51,7 @@ class Event(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(120), unique=True, index=True)
     description: Mapped[str] = mapped_column(TEXT)
-    category: Mapped[str] = mapped_column(String(50), unique=True, index=True)
+    category: Mapped[str] = mapped_column(String(50))
 
     start_date: Mapped[date] = mapped_column(Date)
     end_date: Mapped[date] = mapped_column(Date)

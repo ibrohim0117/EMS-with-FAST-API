@@ -21,9 +21,9 @@ class EventManager:
             new_event_data["organizer_id"] = organizer_id
             event = Event(**new_event_data)
             session.add(event)
-            await session.flush(event)
+            await session.flush()
             await session.refresh(event)
-            print(event)
+            print(event, type(event))
 
             return event
 

@@ -17,7 +17,7 @@ from schemas.event_schemas import EventRequestSchema, EventResponseSchema
 router = APIRouter(tags=["Events"], prefix="/events")
 
 
-@router.post("/", dependencies=[Depends(oauth2_schema), Depends(is_organizer)],response_model=EventResponseSchema)
+@router.post("/", dependencies=[Depends(oauth2_schema), Depends(is_organizer)],response_model=EventResponseSchema, status_code=status.HTTP_201_CREATED)
 async def create_event(request: Request, event_data: EventRequestSchema, db: AsyncSession = Depends(get_database)) -> Event:
 
     event = await EventManager.create_event(event_data, request.state.user.id, db)

@@ -152,6 +152,7 @@ class UserManager:
     async def get_user_by_id(user_id: int, session: AsyncSession) -> Type[User]:
         """Return one user by ID."""
         user = await session.get(User, user_id)
+        # print(user)
         if not user:
             raise HTTPException(status.HTTP_404_NOT_FOUND, ErrorMessages.USER_INVALID)
 
