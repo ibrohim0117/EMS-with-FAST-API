@@ -2,9 +2,10 @@
 
 from fastapi import HTTPException, status
 from collections.abc import Sequence
+from sqlalchemy import update
 from models import Event
 from sqlalchemy.ext.asyncio import AsyncSession
-from schemas.event_schemas import EventRequestSchema, EventResponseSchema
+from schemas.event_schemas import EventRequestSchema, EventResponseSchema, EventEditRequestSchema
 from database.helpers import EventDB
 
 
@@ -47,3 +48,26 @@ class EventManager:
             raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f'Event {event_id} not found')
 
         return event
+
+
+    @staticmethod
+    async def update_event(event_id: int, event_data: EventEditRequestSchema, session: AsyncSession)->None:
+        """Update an event."""
+
+        check_event = await EventDB.get(session, event_id)
+        if check_event is None:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f'Event {event_id} not found')
+
+        await session.execute(update(Event).where(Event.id == event_id).values(
+            title=event_data.title,
+            description=event_data.description,
+            category=event_data.category,
+            start_date=event_data.start_date,
+            end_date=event_data.end_date,
+            time=event_data.time,
+            ticked_price=event_data.ticked_price,
+            ticked_count=event_data.ticked_count,
+            location=event_data.location,
+            status=event_data.status,
+        ))
+

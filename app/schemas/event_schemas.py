@@ -30,4 +30,11 @@ class EventResponseSchema(BaseEvent):
 
 
 
+class EventEditRequestSchema(BaseEvent):
+    status: EventStatus = Field(examples=[ExampleEvent.status])
+
+
+
+
+
 
