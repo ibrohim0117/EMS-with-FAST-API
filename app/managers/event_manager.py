@@ -1,6 +1,6 @@
 """Define the Event manager."""
 
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Request
 from collections.abc import Sequence
 from sqlalchemy import update
 from models import Event
@@ -24,7 +24,7 @@ class EventManager:
             session.add(event)
             await session.flush()
             await session.refresh(event)
-            print(event, type(event))
+            # print(event, type(event))
 
             return event
 
@@ -50,13 +50,17 @@ class EventManager:
         return event
 
 
+
     @staticmethod
-    async def update_event(event_id: int, event_data: EventEditRequestSchema, session: AsyncSession)->None:
+    async def update_event(organizer_id: int, event_id: int, event_data: EventEditRequestSchema, session: AsyncSession)->None:
         """Update an event."""
 
         check_event = await EventDB.get(session, event_id)
         if check_event is None:
             raise HTTPException(status.HTTP_404_NOT_FOUND, detail=f'Event {event_id} not found')
+
+        if check_event.organizer_id != organizer_id:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Is user not in organizer or admin")
 
         await session.execute(update(Event).where(Event.id == event_id).values(
             title=event_data.title,
@@ -70,4 +74,7 @@ class EventManager:
             location=event_data.location,
             status=event_data.status,
         ))
+
+        await session.refresh(check_event)
+        return check_event
 

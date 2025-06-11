@@ -36,9 +36,13 @@ async def get_events(db: AsyncSession = Depends(get_database), event_id: Optiona
 
 @router.put("/{event_id}", response_model=EventResponseSchema, dependencies=[Depends(oauth2_schema), Depends(is_organizer)])
 async def update_event(request: Request, event_id: int, event_data: EventEditRequestSchema, db: AsyncSession = Depends(get_database)) -> Event:
-    event = await EventManager.get_event_by_id(session=db, event_id=event_id)
-    if event.organizer_id != request.state.user.id:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Is user not in organizer or admin")
+    return await EventManager.update_event(
+        event_id=event_id,
+        event_data=event_data,
+        session=db,
+        organizer_id=request.state.user.id,
+    )
+
 
 
 
